@@ -1,0 +1,16 @@
+package com.vitals.spring;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.annotation.*;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+    	Database db = (Database)context.getBean("database");
+    	System.out.println(db.getPatientList().get(0).getFirstName());
+    	
+    }
+}

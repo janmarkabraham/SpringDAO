@@ -1,0 +1,16 @@
+package com.vitals.spring;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.annotation.*;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+    	Patient px = (Patient)context.getBean("patient");
+    	System.out.println(px.getRoom().getRoomNumber().toString());
+    	
+    }
+}

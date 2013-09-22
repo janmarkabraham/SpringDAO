@@ -1,0 +1,7 @@
+package com.vitals.spring;
+
+public class Room {
+	private String department;
+	private String roomNumber;
+
+}

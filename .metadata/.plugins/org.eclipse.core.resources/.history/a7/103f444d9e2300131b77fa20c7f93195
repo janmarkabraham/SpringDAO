@@ -1,0 +1,44 @@
+package com.vitals.spring;
+
+import java.util.*;
+
+public class Patient {
+	private String firstName;
+	private String lastName;
+	private GregorianCalendar dob;
+	private String gender;
+	private Room room;
+	private List<Monitoring> log; 
+
+	public Room getRoom() {
+		return room;
+	}
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public GregorianCalendar getDob() {
+		return dob;
+	}
+	public void setDob(GregorianCalendar dob) {
+		this.dob = dob;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+}

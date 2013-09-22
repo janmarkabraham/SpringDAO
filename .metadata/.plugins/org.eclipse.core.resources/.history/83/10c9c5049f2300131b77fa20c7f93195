@@ -1,0 +1,8 @@
+package com.vitals.spring;
+
+import java.util.List;
+
+public class Database {
+	private List<Patient> patientList;
+
+}
