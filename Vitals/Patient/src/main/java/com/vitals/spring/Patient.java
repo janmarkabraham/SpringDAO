@@ -2,14 +2,19 @@ package com.vitals.spring;
 
 import java.util.List;
 import java.util.GregorianCalendar;
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.*;
 
 public class Patient {
+	private String patientId;
 	private String firstName;
 	private String lastName;
 	private String dob;
 	private String gender;
 	private Room room;
+	
+	@Resource(name="monitoringEx")
 	private List<Monitoring> monitoringList; 
 	
 
@@ -62,6 +67,47 @@ public class Patient {
 	
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	
+	
+	public String getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(String patientId) {
+		this.patientId = patientId;
+	}
+	
+	public void addMonitoring(Monitoring monitoring, String bp, String hr, String rr, String temp, String date){
+		monitoring.setDateTime(date);
+		monitoring.setBloodPressure(bp);
+		monitoring.setHeartRate(hr);
+		monitoring.setRespiratoryRate(rr);
+		monitoring.setTemperature(temp);
+		monitoringList.add(monitoring);		
+	}
+	
+	public void printPatient(){
+		System.out.println("Patient Details:");
+		System.out.println(this.patientId);
+		System.out.println(this.firstName);
+		System.out.println(this.lastName);
+		System.out.println(this.dob);
+		System.out.println(this.gender);	
+	}
+	
+	public void printPatientWithMonitoring(){
+		System.out.println("Patient Details:");
+		System.out.println(this.patientId);
+		System.out.println(this.firstName);
+		System.out.println(this.lastName);
+		System.out.println(this.dob);
+		System.out.println(this.gender);
+		System.out.println("Monitoring:");
+		for(Monitoring monitoring: this.monitoringList){
+			monitoring.printMonitoring();
+		}
+		
 	}
 	
 }

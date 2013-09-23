@@ -6,6 +6,7 @@
     <project>Room</project>
     <project>Patient</project>
     <project>Monitoring</project>
+    <project>UserInterface</project>
     <project>Database</project>
   </projects>
   <buildSpec>

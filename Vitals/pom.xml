@@ -63,9 +63,10 @@
 	
   <modules>
 	<module>App</module>
+	<module>UserInterface</module>
 	<module>Database</module>
 	<module>Patient</module>
 	<module>Monitoring</module>
-    	<module>Room</module>  
+    	<module>Room</module>    	
   </modules>
 </project>

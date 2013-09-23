@@ -1,0 +1,120 @@
+package com.vitals.spring;
+
+import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.annotation.*;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+    	
+    	Database db = (Database)context.getBean("databaseEx");
+    	Scanner scanner = (Scanner)context.getBean("scanner");
+    	Menu menu = (Menu)context.getBean("menu");
+    	
+    	System.out.println(db.getPatientList().get(0).getFirstName());
+    	
+    	int command1, command2;
+    	do{
+    		menu.display();
+    		command1 = Integer.parseInt(scanner.nextLine());
+    			switch (command1) {
+    				/*case 1: int size = record.getSize();
+    						System.out.println("  Id / Name / Quantity / Price / Color ");
+    						if(size > 0)
+    							for(int i=0; i < size; i++){
+    								System.out.print((i+1)+".");
+    								record.getList().get(i).printListItem();
+    							}
+    						else {
+    							System.out.println("--- RECORD IS EMPTY ---");
+    						}
+    						
+    						break;
+    					
+    				case 2: 
+    						menu.item();
+    						command2 = Integer.parseInt(sc.nextLine());
+    						
+    						if(command2==1){
+    							Item chair = (Item)context.getBean("chair");
+    							System.out.println("Name:"); String name = sc.nextLine();
+    							System.out.println("Price:"); String price = sc.nextLine();
+    							System.out.println("Color:"); String color = sc.nextLine();
+    							System.out.println("Quantity:"); String quantity = sc.nextLine();
+    							chair.setName(name);
+    							chair.setPrice(price);
+    							chair.setQuantity(quantity);
+    							chair.setColor(color);
+    							record.add(chair);
+    							System.out.println("Item added!");
+    						}
+    						
+    						if(command2==2){
+    							Item table = (Item)context.getBean("table");
+    							System.out.println("Name:"); String name = sc.nextLine();
+    							System.out.println("Price:"); String price = sc.nextLine();
+    							System.out.println("Color:"); String color = sc.nextLine();
+    							System.out.println("Quantity:"); String quantity = sc.nextLine();
+    							table.setName(name);
+    							table.setPrice(price);
+    							table.setQuantity(quantity);
+    							table.setColor(color);
+    							record.add(table);
+    							System.out.println("Item added!");
+    						}
+    						break;
+    					
+    				case 3: System.out.println("ID of Item to be edited: ");
+    						String id = sc.nextLine();
+    						size = record.getSize();
+    						boolean exists = false;
+    						for(int i=0; i < size; i++){
+    							if(id.equalsIgnoreCase(record.getList().get(i).getItemId())){
+    								System.out.println("New Name:"); String name = sc.nextLine();
+    								System.out.println("New Price:"); String price = sc.nextLine();
+    								System.out.println("New Color:"); String color = sc.nextLine();
+    								System.out.println("New Quantity:"); String quantity = sc.nextLine();
+    								record.getList().get(i).setName(name);
+    								record.getList().get(i).setPrice(price);
+    								record.getList().get(i).setColor(color);
+    								record.getList().get(i).setQuantity(quantity);
+    								System.out.println("Item updated!");
+    								exists = true;
+    								break;
+    							}			
+    						}
+    						if(!exists){
+    							System.out.println("ID does not exist");
+    						}
+    						
+    						break;
+    					
+    					
+    				case 4: System.out.println("ID of Item to be edited: ");
+    						id = sc.nextLine();
+    						size = record.getSize();
+    						exists = false;
+    						for(int i=0; i < size; i++){
+    							if(id.equalsIgnoreCase(record.getList().get(i).getItemId())){
+    								record.getList().remove(i);
+    								System.out.println("Item deleted!");
+    								exists = true;
+    								break;
+    							}			
+    						}
+    						if(!exists){
+    							System.out.println("ID does not exist");
+    						}
+    						break;*/
+    			}
+    		} while (command1 != 5);
+    		
+    		System.out.println(" Bye ! ");
+
+    }
+}

@@ -1,0 +1,97 @@
+package com.vitals.spring;
+
+
+import java.util.Scanner;
+import java.lang.String;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.annotation.*;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+    	Database db = (Database)context.getBean("database");
+    	Menu menu = (Menu)context.getBean("menu");
+    	
+    	Scanner scanner = new Scanner(System.in);
+    	
+    	
+    	
+    	int command1, command2;
+    	do{
+    		menu.mainMenu();
+    		command1 = Integer.parseInt(scanner.nextLine());
+    			switch (command1) {
+    				case 1: 
+    						db.printDatabase();
+    						break;
+    					
+    				case 2:
+    						System.out.println("Add new patient - Enter Details");
+    						
+
+    						Patient patient = (Patient)context.getBean("patient");
+    						System.out.println("First Name:"); String firstname = scanner.nextLine().toUpperCase();
+    						System.out.println("Last Name:"); String lastname = scanner.nextLine().toUpperCase();
+    						System.out.println("Date of Birth (YYYY-MM-DD):"); String dob = scanner.nextLine().toUpperCase();
+    						System.out.println("Gender (male/female):"); String gender = scanner.nextLine().toUpperCase();
+    						patient.setFirstName(firstname);
+    						patient.setLastName(lastname);
+    						patient.setDob(dob);
+    						patient.setGender(gender);
+    						db.addPatient(patient);
+    						System.out.println("Patient added!");
+    						break;
+/*	
+    				case 3: System.out.println("ID of Item to be edited: ");
+    						String id = sc.nextLine();
+    						size = record.getSize();
+    						boolean exists = false;
+    						for(int i=0; i < size; i++){
+    							if(id.equalsIgnoreCase(record.getList().get(i).getItemId())){
+    								System.out.println("New Name:"); String name = sc.nextLine();
+    								System.out.println("New Price:"); String price = sc.nextLine();
+    								System.out.println("New Color:"); String color = sc.nextLine();
+    								System.out.println("New Quantity:"); String quantity = sc.nextLine();
+    								record.getList().get(i).setName(name);
+    								record.getList().get(i).setPrice(price);
+    								record.getList().get(i).setColor(color);
+    								record.getList().get(i).setQuantity(quantity);
+    								System.out.println("Item updated!");
+    								exists = true;
+    								break;
+    							}			
+    						}
+    						if(!exists){
+    							System.out.println("ID does not exist");
+    						}
+    						
+    						break;
+    					
+    					
+    				case 4: System.out.println("ID of Item to be edited: ");
+    						id = sc.nextLine();
+    						size = record.getSize();
+    						exists = false;
+    						for(int i=0; i < size; i++){
+    							if(id.equalsIgnoreCase(record.getList().get(i).getItemId())){
+    								record.getList().remove(i);
+    								System.out.println("Item deleted!");
+    								exists = true;
+    								break;
+    							}			
+    						}
+    						if(!exists){
+    							System.out.println("ID does not exist");
+    						}
+    						break;*/
+    			}
+    		} while (command1 != 5);
+    		
+    		System.out.println(" Bye ! ");
+
+    }
+}

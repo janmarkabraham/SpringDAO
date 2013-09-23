@@ -1,0 +1,27 @@
+package com.vitals.spring;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.*;
+
+public class Database {
+	@Resource(name="patientEx")
+	private List<Patient> patientList;
+	
+	
+	public List<Patient> getPatientList() {
+		return patientList;
+	}
+	
+	public void setPatientList(List<Patient> patientList) {
+		this.patientList = patientList;
+	}
+	
+	public void printDatabase(){
+		for(Patient patient: patientList){
+			patient.printPatient();
+		}
+	}
+}

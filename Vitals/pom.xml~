@@ -66,6 +66,7 @@
 	<module>Database</module>
 	<module>Patient</module>
 	<module>Monitoring</module>
-    	<module>Room</module>  
+    	<module>Room</module>
+    <module>UserInterface</module>
   </modules>
 </project>

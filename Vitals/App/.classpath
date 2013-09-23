@@ -16,5 +16,6 @@
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-expression/3.2.4.RELEASE/spring-expression-3.2.4.RELEASE.jar"/>
   <classpathentry kind="src" path="/Patient"/>
   <classpathentry kind="src" path="/Monitoring"/>
+  <classpathentry kind="src" path="/UserInterface"/>
   <classpathentry kind="src" path="/Database"/>
 </classpath>
