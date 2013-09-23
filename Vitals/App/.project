@@ -7,6 +7,7 @@
     <project>Patient</project>
     <project>Monitoring</project>
     <project>UserInterface</project>
+    <project>Dao</project>
     <project>Database</project>
   </projects>
   <buildSpec>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config/>
+	<context:component-scan base-package="java.io"/>
+	
+	<bean id="patientEx" class="com.vitals.spring.Patient">
+		<qualifier value="patientEx" />
+		<property name="patientId" value="0001" />
+		<property name="firstName" value="ALDOUS" />
+		<property name="lastName" value="LATONIO" />
+		<property name="dob" value="1988-5-25" />
+		<property name="gender" value="MALE" />
+		<!-- <property name="monitoringList" > 
+			<list>
+				<ref bean="monitoringEx" />
+			</list>
+		</property> -->
+	</bean>
+	
+	<bean id="roomEx" class="com.vitals.spring.Room">
+		<qualifier value="roomEx" />	
+		<property name="department" value="pay" />
+		<property name="roomNumber" value="404" />
+	</bean>
+	
+	
+	<bean id="monitoringEx" class="com.vitals.spring.Monitoring">
+		<qualifier value="monitoringEx" />
+		<property name="dateTime" value="2013-9-23 14:00" />
+		<property name="bloodPressure" value="140/90" />
+		<property name="heartRate" value="100" />
+		<property name="respiratoryRate" value="20" />
+		<property name="temperature" value="37.5" />
+	</bean>
+	
+	<bean id="database" class="com.vitals.spring.Database" scope="singleton">
+		<property name="patientList" >
+			<list>
+				<ref bean="patientEx" />
+			</list>
+		</property>		
+	</bean>
+	
+	
+	<!--
+	<bean id="scanner" class="java.util.Scanner" factory-method="getInstance">
+		<constructor-arg type="java.io.InputStream" value="System.in" />
+	</bean>
+	-->
+
+	
+	<bean id="menu" class="com.vitals.spring.Menu" />
+	<bean id="monitoring" class="com.vitals.spring.Monitoring" scope="prototype" />	
+	<bean id="patient" class="com.vitals.spring.Patient" scope="prototype"/>
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+</beans>

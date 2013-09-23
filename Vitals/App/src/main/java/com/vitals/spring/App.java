@@ -4,6 +4,8 @@ package com.vitals.spring;
 import java.util.Scanner;
 import java.lang.String;
 
+import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.beans.annotation.*;
@@ -13,6 +15,7 @@ public class App
     public static void main( String[] args )
     {
     	ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+    	DaoInt dao = (DaoInt)context.getBean("DaoImp");
     	Database db = (Database)context.getBean("database");
     	Menu menu = (Menu)context.getBean("menu");
     	Monitoring monitoring = (Monitoring)context.getBean("monitoring");
@@ -20,15 +23,13 @@ public class App
     	
     	Scanner scanner = new Scanner(System.in);
     	
-    	
-    	
     	int command1, command2;
     	do{
     		menu.mainMenu();
     		command1 = Integer.parseInt(scanner.nextLine());
     			switch (command1) {
     				case 1: 
-    						db.printDatabase();
+    						dao.getPatients();
     						break;
     					
     				case 2:
@@ -38,7 +39,7 @@ public class App
     						System.out.println("Last Name:"); String lastname = scanner.nextLine().toUpperCase();
     						System.out.println("Date of Birth (YYYY-MM-DD):"); String dob = scanner.nextLine().toUpperCase();
     						System.out.println("Gender (male/female):"); String gender = scanner.nextLine().toUpperCase();
-    						db.addPatient(patient, firstname, lastname, dob, gender);
+    						dao.insertPatient(patient);
     						break;
 	
     				case 3: System.out.println("ID of Patient to be edited: ");

@@ -1,0 +1,53 @@
+package com.vitals.spring;
+
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+
+import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.AnnotationConfiguration;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+@Service("daoImp")
+public class DaoImp implements DaoInt {
+
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	@Override
+	@Transactional
+	public void insertPatient(Patient patient){
+		sessionFactory.getCurrentSession().save(patient);
+	}
+	
+	@Override
+	@Transactional
+	public Patient getPatientById(int patientId){
+		return (Patient) sessionFactory.
+				getCurrentSession().get(Patient.class, patientId);	
+	}
+	
+	@Override
+	@Transactional
+	public Patient getPatient(String firstName){
+		Query hql = sessionFactory.getCurrentSession().
+				createQuery("from patient where firstName = :firstName");
+		hql.setParameter("firstName", firstName);
+		return (Patient)hql.list().get(0);
+	}
+	
+	@Override
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public List<Patient> getPatients(){
+		Criteria criteria = sessionFactory.getCurrentSession().
+				createCriteria(Patient.class);
+		return criteria.list();
+	}
+}

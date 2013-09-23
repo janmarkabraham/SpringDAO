@@ -1,20 +1,36 @@
 package com.vitals.spring;
 
 import java.util.List;
+import javax.persistence.*;
 import java.util.GregorianCalendar;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.*;
 
+@Entity
+@Table(name="patient")
 public class Patient {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="patientId, nullable=false")
 	private String patientId;
+	
+	@Column(name="firstName")
 	private String firstName;
+	
+	@Column(name="lastName")
 	private String lastName;
+	
+	@Column(name="dob")
 	private String dob;
+	
+	@Column(name="gender")
 	private String gender;
+	
+	@Column(name="room")
 	private Room room;
 	
-	@Resource(name="monitoringEx")
 	private List<Monitoring> monitoringList; 
 	
 
